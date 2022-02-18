@@ -1,0 +1,23 @@
+body {
+
+}
+
+.question {
+  text-align: left;
+  background-color: navy;
+  color: white;
+}
+
+.answer {
+  text-align: right;
+  background-color: #89CFF0;
+  color: navy;
+
+}
+.displayConversation{
+  height: 300px;
+  width: 50%;
+  box-sizing: border-box;
+  position: relative;
+  overflow-y: scroll;
+}

@@ -2,79 +2,47 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import CUI from './components/CUI'
+import TextBox from './components/TextBox';
 import { useNavigate } from "react-router-dom";
+import data from './input.json';
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Routes,
   Route,
   Navigate,
 } from "react-router-dom";
-
-/*
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-*/
+import Input from './components/Input';
+import Output from './components/Output';
 
 
-/*
-import Home from "./components/Home";
 
-function App() {
+class App extends React.Component { 
 
-  return (
-    <>
-      <Router>
-        <Routes>
-          <Route path="/Home" element={<Home/>} />
-            
-          <Navigate to="/" />
-        </Routes>
-      </Router>
-    </>
-  );
-}
-
-*/
-
-function App () { 
-
-  let navigate = useNavigate();
-
-  const onSubmit = (e) => {
-    navigate('/CUI');
+  constructor(){
+    super()
+    this.state = {
+      greeting: data.Greeting,
+      messages: data.Conversation,
+      farewell: data.Farewell,
+      counter: 7,
+      msg: "",
+      userConvo: []
+    }
   }
 
 
+  render(){
 
-  return (
-      <div class="center">
-          <h1>Please enter configuration file to begin</h1>
-          <form >
-              <label > Please enter Config File:
-              <input onChange={onSubmit} type="file" />
-              </label>
-          </form>
+    return (
+           
+      <div>
+        <h1> App</h1>
       </div>
-  );
+    
+    );
+  }
 
 
 }
+
 export default App;

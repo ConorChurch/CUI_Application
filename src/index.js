@@ -3,7 +3,9 @@ import ReactDOM, { render } from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Input from './components/Input';
 import CUI from './components/CUI';
+import UserConvo from './components/UserConvo';
 import {
   BrowserRouter as Router,
   Routes,
@@ -24,11 +26,12 @@ render(
 */
 
 
+
 render(
   <BrowserRouter>
     <Routes>
-      <Route exact path="/" element={<App />}/>
-      <Route path="/CUI" element={<CUI />} />
+      <Route path="/" element={<App />} />
+      <Route index element={<UserConvo />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById("root")
