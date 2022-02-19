@@ -1,7 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
 import React from 'react';
-import CUI from './components/CUI'
 import TextBox from './components/TextBox';
 import { useNavigate } from "react-router-dom";
 import data from './input.json';
@@ -12,7 +11,6 @@ import {
   Navigate,
 } from "react-router-dom";
 import Input from './components/Input';
-import Output from './components/Output';
 
 
 

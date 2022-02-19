@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Input from './components/Input';
-import CUI from './components/CUI';
 import UserConvo from './components/UserConvo';
 import {
   BrowserRouter as Router,
