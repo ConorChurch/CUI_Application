@@ -4,6 +4,7 @@ import TextBox from './TextBox';
 import data from '../input.json';
 import './UserConvo.css';
 import EndPage from './EndPage';
+import axios from 'axios';
 
 
 class UserConvo extends React.Component { 
@@ -19,15 +20,15 @@ class UserConvo extends React.Component {
       answersDone: false
     }
     this.handleCallback = this.handleCallback.bind(this);
+    this.handleEndOfConversation = this.handleEndOfConversation.bind(this);
   }
 
 
-
   handleCallback = (textInput) => {
-    
     var newQuestions;
     if(this.state.counter >= data.Conversation.length){
       newQuestions = [...this.state.questionsArray, {type: "answer", message: textInput}];
+      this.handleEndOfConversation(this.state.questionsArray)
       this.setState({answersDone: true})
     } else{
 
@@ -41,8 +42,16 @@ class UserConvo extends React.Component {
 
   }
 
-  handleEndOfConversation = () => {
-
+  handleEndOfConversation = (conversation) => {
+    axios
+      .post("http://127.0.0.1:5000/save", conversation)
+      .then(res => {
+        if(res.data["status code"] === "200"){
+          console.log(conversation)
+        }
+      }).catch((error) => {
+        console.log(conversation)
+      });
   }
 
 

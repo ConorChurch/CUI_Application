@@ -1,6 +1,5 @@
 import './App.css';
 import React from 'react';
-import Input from './components/Input';
 import UserConvo from './components/UserConvo';
 
 
