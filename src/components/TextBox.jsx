@@ -1,17 +1,4 @@
 import React from 'react';
-import ReactDOM, { render } from 'react-dom';
-import data from '../input.json';
-import App from '../App';
-import Card from 'react-bootstrap/Card'
-import reportWebVitals from '../reportWebVitals';
-import { useNavigate } from "react-router-dom";
-import {
-    BrowserRouter as Router,
-    Routes,
-    Route,
-    Navigate,
-  } from "react-router-dom";
-  
 
   export class TextBox extends React.Component {
 

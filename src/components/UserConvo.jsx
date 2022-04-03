@@ -1,15 +1,9 @@
 import '../App.css';
 import React from 'react';
 import TextBox from './TextBox';
-import { useNavigate } from "react-router-dom";
 import data from '../input.json';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
 import './UserConvo.css';
+import EndPage from './EndPage';
 
 
 class UserConvo extends React.Component { 
@@ -17,11 +11,12 @@ class UserConvo extends React.Component {
   constructor(){
     super()
     this.state = {
-      greeting: data.Greeting,
+      greeting: data.Conversation.Greeting,
       messages: data.Conversation,
-      farewell: data.Farewell,
+      farewell: data.Conversation.Farewell,
       counter: 1,
       questionsArray: [{type: "question", message: data.Conversation.at(0).Message, classname: "left"}],
+      answersDone: false
     }
     this.handleCallback = this.handleCallback.bind(this);
   }
@@ -29,10 +24,11 @@ class UserConvo extends React.Component {
 
 
   handleCallback = (textInput) => {
-
+    
     var newQuestions;
     if(this.state.counter >= data.Conversation.length){
       newQuestions = [...this.state.questionsArray, {type: "answer", message: textInput}];
+      this.setState({answersDone: true})
     } else{
 
       newQuestions  = [...this.state.questionsArray, {type: "answer", message: textInput}, {type: "question", message: data.Conversation.at(this.state.counter).Message}];
@@ -42,6 +38,10 @@ class UserConvo extends React.Component {
       questionsArray: newQuestions,
       counter: prevState.counter+1
     }))
+
+  }
+
+  handleEndOfConversation = () => {
 
   }
 
@@ -58,9 +58,11 @@ class UserConvo extends React.Component {
     return (
           <div>
               <div className='displayConversation'>
-                {conversation} 
+                {(this.state.answersDone === false) && conversation}
+                {(this.state.answersDone === true) && <EndPage />}
               </div>
-                <TextBox parentCallback = {this.handleCallback}/>      
+                
+                {(this.state.answersDone === false) && <TextBox parentCallback = {this.handleCallback}/>  }   
           </div>
     );
   }
