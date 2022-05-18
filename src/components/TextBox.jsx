@@ -37,7 +37,7 @@ import React from 'react';
                     value={this.state.userInput}
                     onChange={this.handleChange}
                 />
-            </form><button onClick={this.handleSubmit}> Submit</button>
+            </form><button type="submit" onClick={this.handleSubmit}> Submit</button>
             </>
         )
     }

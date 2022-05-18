@@ -1,0 +1,30 @@
+{
+    "Conversation": [
+        {
+            "Question": 1,
+            "Type": "free",
+            "Message": "What's your name?"
+        },
+        {
+            "Question": 2,
+            "Type": "free",
+            "Message": "What's your age?"
+        },
+        {
+            "Question": 3,
+            "Type": "free",
+            "Message": "Where do you live?"
+        },
+        {
+            "Question": 4,
+            "Type": "choice",
+            "Message": "How are you feeling today?",
+            "Choices": [
+                "Good",
+                "Bad",
+                "Indifferent"
+            ]
+        }
+    ],
+    "Farewell": "Thank you for taking the survey"
+}
