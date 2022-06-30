@@ -10,6 +10,7 @@ import axios from 'axios';
 
 class UserConvo extends React.Component { 
 
+  
   constructor(){
     super()
     this.state = {
@@ -17,50 +18,113 @@ class UserConvo extends React.Component {
       messages: data.Conversation,
       farewell: data.Farewell,
       counter: 1,
-      questionsArray: [{type: "question", message: data.Conversation.at(0).Message, classname: "left"}],
+      questionsArray: [],
       answersDone: false,
       freeText: true,
-      choices: []
+      choices: [],
+      timeTakenForCurrentQuestion: 0
     }
     this.handleCallback = this.handleCallback.bind(this);
     this.handleEndOfConversation = this.handleEndOfConversation.bind(this);
   }
 
+  // First question/message will appear when the page is rendered
+  // The timer is started for the first question
+  componentDidMount = () => {
 
-  handleCallback = (textInput) => {
-    var newQuestions;
-
-    if(this.state.counter >= data.Conversation.length){
-
-      newQuestions = [...this.state.questionsArray, {type: "answer", message: textInput}];
-      this.handleEndOfConversation(newQuestions)
-      this.setState({answersDone: true})
-
-    } 
-    else{
-
-      newQuestions  = [...this.state.questionsArray, {type: "answer", message: textInput}, {type: "question", message: data.Conversation.at(this.state.counter).Message}];
-      if(data.Conversation.at(this.state.counter).Type === "choice"){
-        this.setState({
-          choices: data.Conversation.at(this.state.counter).Choices,
-          freeText: false
-        })
-        console.log(this.state.choices)
-      }
-      else{
-        this.setState({freeText: true})
-      }
-    }
-    this.setState(prevState => ({
-      questionsArray: newQuestions,
-      counter: prevState.counter+1
-    }))
+    this.setState({
+      questionsArray: [{type: "question", message: data.Conversation.at(0).Message}]
+    })
+    this.timer()
 
   }
 
+
+  // Records the time taken to answer each question
+  // The timer increments in seconds
+  timer = () => {
+    this. f = setInterval( () => {
+      this.setState({
+        timeTakenForCurrentQuestion: this.state.timeTakenForCurrentQuestion +1
+      })}, 1000)
+  }
+
+  // The timer is reset when this message is called
+  // This will happen each time an answer is given
+  // The timer is restarted also
+  resetTimer = () => {
+    clearInterval(this.f);
+    this.setState({
+      timeTakenForCurrentQuestion: 0
+    })
+    this.timer();
+  }
+
+  // This method handles the answer that is given to add to the conversation array
+  handleCallback = (textInput) => {
+
+    var answer;
+
+    answer = [...this.state.questionsArray, {type: "answer", message: textInput, timeTakenForCurrentQuestion: this.state.timeTakenForCurrentQuestion}];
+    if(this.state.counter >= data.Conversation.length){
+      
+      setTimeout(() => {
+        this.handleEndOfConversation(answer)
+        this.setState({answersDone: true})
+      }, 2000)
+      
+    }
+    else{
+
+      this.setState(() => ({
+        questionsArray:  answer
+      }))
+      this.resetTimer();
+      this.appendQuestion(answer);
+
+    }
+  
+
+    console.log(this.state.questionsArray.length)
+
+  }
+
+
+  // Once the answer is given, the next question is appended to the array
+  // It will not appear for the alloted time set in the timeout
+  appendQuestion = (answer) => {
+
+    var newQuestions;
+    newQuestions  = [...this.state.questionsArray, answer[answer.length-1], {type: "question", message: data.Conversation.at(this.state.counter).Message}];
+    
+    setTimeout(() => {
+    
+      if(data.Conversation.at(this.state.counter).Type === "choice"){
+          
+        this.setState(prevState => ({
+          choices: data.Conversation.at(this.state.counter).Choices,
+          freeText: false,
+          questionsArray:  newQuestions,
+          counter: prevState.counter+1
+        }))
+        console.log(this.state.choices)
+      }
+      else{
+        this.setState(prevState => ({
+          freeText: true,
+          questionsArray:  newQuestions,
+          counter: prevState.counter+1
+        }))
+      }
+    }, 2000)
+
+  }
+
+  // Once the conversation has ended this method is called
+  // It sends the completed conversation to the server
   handleEndOfConversation = (conversation) => {
     axios
-      .post("http://127.0.0.1:5000/save", conversation)
+      .post("http://127.0.0.1:28001/save", conversation)
       .then(res => {
         if(res.data["status code"] === "200"){
           console.log(conversation)
@@ -71,6 +135,7 @@ class UserConvo extends React.Component {
   }
 
 
+  // The render method will display each message of the conversation as it arrives
   render(){
 
     const conversation = [];
