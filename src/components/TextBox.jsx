@@ -14,8 +14,11 @@ import React from 'react';
 
 
 
-    handleSubmit (){
-        this.props.parentCallback(this.state.userInput)
+    handleSubmit = event =>{
+        event.preventDefault();
+        if(this.props.waitForQuestion != true){
+            this.props.parentCallback(this.state.userInput)
+        }
         this.setState({userInput: ""})
     }
 
@@ -27,18 +30,19 @@ import React from 'react';
 
     render() {
         return (
-            <>
             <form>
-
-                <input
-                    placeholder='Type Response here'
-                    type="text" 
-                    name="userInput"
-                    value={this.state.userInput}
-                    onChange={this.handleChange}
-                />
-            </form><button type="submit" onClick={this.handleSubmit}> Submit</button>
-            </>
+                    <input
+                        style={{"width": "68.6%"}}
+                        className="text"
+                        placeholder='Type your response here...'
+                        type="text" 
+                        name="userInput"
+                        value={this.state.userInput}
+                        onChange={this.handleChange}
+                    />
+                    <input className="text"
+                        type="submit" onClick={this.handleSubmit}/>
+            </form>
         )
     }
 

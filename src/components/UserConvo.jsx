@@ -22,7 +22,9 @@ class UserConvo extends React.Component {
       answersDone: false,
       freeText: true,
       choices: [],
-      timeTakenForCurrentQuestion: 0
+      timeTakenForCurrentQuestion: 0,
+      screenType: data.Parameters[0]['Screen Type'],
+      waitForQuestion: false
     }
     this.handleCallback = this.handleCallback.bind(this);
     this.handleEndOfConversation = this.handleEndOfConversation.bind(this);
@@ -31,7 +33,6 @@ class UserConvo extends React.Component {
   // First question/message will appear when the page is rendered
   // The timer is started for the first question
   componentDidMount = () => {
-
     this.setState({
       questionsArray: [{type: "question", message: data.Conversation.at(0).Message}]
     })
@@ -64,29 +65,34 @@ class UserConvo extends React.Component {
   handleCallback = (textInput) => {
 
     var answer;
-
-    answer = [...this.state.questionsArray, {type: "answer", message: textInput, timeTakenForCurrentQuestion: this.state.timeTakenForCurrentQuestion}];
-    if(this.state.counter >= data.Conversation.length){
-      
-      setTimeout(() => {
-        this.handleEndOfConversation(answer)
-        this.setState({answersDone: true})
-      }, 2000)
-      
+    console.log(this.state.questionsArray.length-1)
+    
+    if(this.state.questionsArray[this.state.questionsArray.length-1].type != "question"){
+      this.setState ({
+        waitForQuestion: true
+      })
     }
     else{
+      answer = [...this.state.questionsArray, {type: "answer", message: textInput, timeTakenForCurrentQuestion: this.state.timeTakenForCurrentQuestion}];
+    
+      if(this.state.counter >= data.Conversation.length){
+        
+        setTimeout(() => {
+          this.handleEndOfConversation(answer)
+          this.setState({answersDone: true})
+        }, 2000)
+        
+      }
+      else{
 
-      this.setState(() => ({
-        questionsArray:  answer
-      }))
-      this.resetTimer();
-      this.appendQuestion(answer);
+        this.setState(() => ({
+          questionsArray:  answer
+        }))
+        this.resetTimer();
+        this.appendQuestion(answer);
 
+      }
     }
-  
-
-    console.log(this.state.questionsArray.length)
-
   }
 
 
@@ -105,7 +111,8 @@ class UserConvo extends React.Component {
           choices: data.Conversation.at(this.state.counter).Choices,
           freeText: false,
           questionsArray:  newQuestions,
-          counter: prevState.counter+1
+          counter: prevState.counter+1,
+          waitForQuestion: false
         }))
         console.log(this.state.choices)
       }
@@ -113,7 +120,8 @@ class UserConvo extends React.Component {
         this.setState(prevState => ({
           freeText: true,
           questionsArray:  newQuestions,
-          counter: prevState.counter+1
+          counter: prevState.counter+1,
+          waitForQuestion: false
         }))
       }
     }, 2000)
@@ -140,20 +148,24 @@ class UserConvo extends React.Component {
 
     const conversation = [];
     for( var i =0; i< this.state.questionsArray.length; i++){
-      
-      conversation.push(<div key={i} className={this.state.questionsArray[i].type}>{this.state.questionsArray[i].message}</div>)
-      
+      if(this.state.questionsArray[i].message != ""){
+        conversation.push(<div key={i} className={this.state.questionsArray[i].type}><span className={this.state.questionsArray[i].type}>{this.state.questionsArray[i].message}</span></div>)
+      }
+      else{
+        conversation.push(<div key={i} className={this.state.questionsArray[i].type}>{this.state.questionsArray[i].message}</div>)
+      }
     }
 
     return (
           <div>
-              <div className='displayConversation'>
+              <div className={this.state.screenType}>
                 {(this.state.answersDone === false) && conversation}
                 {(this.state.answersDone === true) && <EndPage endMessage = {this.state.farewell}/>}
               </div>
-                
-                {(this.state.answersDone === false) && (this.state.freeText === true) && <TextBox parentCallback = {this.handleCallback} />  }   
-                {(this.state.answersDone === false) && (this.state.freeText === false) && <Buttons parentCallback = {this.handleCallback} choices={this.state.choices} /> }
+              <div className={this.state.screenType+'Input'}>
+                {(this.state.answersDone === false) && (this.state.freeText === true) && <TextBox parentCallback = {this.handleCallback} waitForQuestion = {this.waitForQuestion} />  }   
+                {(this.state.answersDone === false) && (this.state.freeText === false) && <Buttons parentCallback = {this.handleCallback} choices={this.state.choices} waitForQuestion = {this.waitForQuestion} /> }
+              </div>
           </div>
     );
   }

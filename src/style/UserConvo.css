@@ -1,23 +1,99 @@
 body {
+  height: 100vh;
+}
+
+.question span {
+  background-color: navy;
+  padding: 5px 12px 5px 12px;
 
 }
 
 .question {
+  border-radius: 25px;
+  max-width: 80%;
   text-align: left;
-  background-color: navy;
   color: white;
+  margin-left: 0;
+  margin-right: auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+.answer span {
+  background-color: #89CFF0;
+  padding: 5px 12px 5px 12px;
+
 }
 
 .answer {
+  border-radius: 25px;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: 0;
   text-align: right;
-  background-color: #89CFF0;
   color: navy;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
 
+.dialogueBox {
+  margin-right: 0;
+  padding-top: 10px;
 }
-.displayConversation{
-  height: 300px;
-  width: 50%;
+
+.text {
+  display: inline-block;
+  border-radius: 25px;
+  padding: 5px 12px 5px 12px;
+}
+
+.monitor {
+  height: 90vh;
+  width: 30%;
+  right: 50%;
   box-sizing: border-box;
-  position: relative;
   overflow-y: scroll;
+  margin: 0 auto;
+  border: 0;
 }
+
+
+.monitorInput {
+  top: 0px;
+  bottom: 10%;
+  margin: 0 auto;
+  width: 30%;
+  right: 50%;
+  border: 0;
+}
+
+
+.phone {
+  height: 90vh;
+  width: 100%;
+  right: 50%;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  margin: 0 auto;
+  border: 0;
+}
+
+
+.phoneInput {
+  top: 0px;
+  bottom: 10%;
+  margin: 0 auto;
+  width: 100%;
+  border: 0;
+}
+
+
+

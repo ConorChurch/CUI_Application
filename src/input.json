@@ -1,4 +1,12 @@
 {
+    "Parameters": [
+        {
+            "Screen Type": "phone"
+        },
+        {
+            "Button Type": ""
+        }
+    ],
     "Conversation": [
         {
             "Question": 1,
