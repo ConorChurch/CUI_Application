@@ -44,7 +44,7 @@ class UserConvo extends React.Component {
   // Records the time taken to answer each question
   // The timer increments in seconds
   timer = () => {
-    this. f = setInterval( () => {
+    this.f = setInterval( () => {
       this.setState({
         timeTakenForCurrentQuestion: this.state.timeTakenForCurrentQuestion +1
       })}, 1000)
@@ -67,7 +67,7 @@ class UserConvo extends React.Component {
     var answer;
     console.log(this.state.questionsArray.length-1)
     
-    if(this.state.questionsArray[this.state.questionsArray.length-1].type != "question"){
+    if(this.state.questionsArray[this.state.questionsArray.length-1].type !== "question"){
       this.setState ({
         waitForQuestion: true
       })
@@ -148,7 +148,7 @@ class UserConvo extends React.Component {
 
     const conversation = [];
     for( var i =0; i< this.state.questionsArray.length; i++){
-      if(this.state.questionsArray[i].message != ""){
+      if(this.state.questionsArray[i].message !== ""){
         conversation.push(<div key={i} className={this.state.questionsArray[i].type}><span className={this.state.questionsArray[i].type}>{this.state.questionsArray[i].message}</span></div>)
       }
       else{
@@ -157,15 +157,21 @@ class UserConvo extends React.Component {
     }
 
     return (
-          <div>
+          <div className='dialogueBox'>
+              {(this.state.answersDone === false) &&
               <div className={this.state.screenType}>
-                {(this.state.answersDone === false) && conversation}
-                {(this.state.answersDone === true) && <EndPage endMessage = {this.state.farewell}/>}
+                {conversation}
               </div>
-              <div className={this.state.screenType+'Input'}>
+              }
+
+              {(this.state.answersDone === true) && <EndPage endMessage = {this.state.farewell}/>}
+
+              {(this.state.answersDone === false) &&
+              <footer className={this.state.screenType+'Input'}>
                 {(this.state.answersDone === false) && (this.state.freeText === true) && <TextBox parentCallback = {this.handleCallback} waitForQuestion = {this.waitForQuestion} />  }   
                 {(this.state.answersDone === false) && (this.state.freeText === false) && <Buttons parentCallback = {this.handleCallback} choices={this.state.choices} waitForQuestion = {this.waitForQuestion} /> }
-              </div>
+              </footer> 
+              }
           </div>
     );
   }

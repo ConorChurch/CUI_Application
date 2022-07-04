@@ -16,7 +16,7 @@ import React from 'react';
 
     handleSubmit = event =>{
         event.preventDefault();
-        if(this.props.waitForQuestion != true){
+        if(this.props.waitForQuestion !== true){
             this.props.parentCallback(this.state.userInput)
         }
         this.setState({userInput: ""})
@@ -32,15 +32,14 @@ import React from 'react';
         return (
             <form>
                     <input
-                        style={{"width": "68.6%"}}
-                        className="text"
+                        className="textInput"
                         placeholder='Type your response here...'
                         type="text" 
                         name="userInput"
                         value={this.state.userInput}
                         onChange={this.handleChange}
                     />
-                    <input className="text"
+                    <input className="submitButton"
                         type="submit" onClick={this.handleSubmit}/>
             </form>
         )

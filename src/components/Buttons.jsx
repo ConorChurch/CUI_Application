@@ -36,10 +36,10 @@ import React from 'react';
         }
         return (
             <>
-            <div>
+            <div className='buttonBox'>
 
                 {this.props.choices?.map((choice,i) => (
-                        <button key={i} value={choice} onClick={() => this.handleSubmit(choice)}>
+                        <button key={i} value={choice} className="buttons" onClick={() => this.handleSubmit(choice)}>
                             {choice}
                         </button>
                 ))}
