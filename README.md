@@ -42,6 +42,9 @@ You will need to change "UserConvo.jsx" on line 133 to the url to the address yo
 (TO DO)
 
 
+The Cloud storage currently used is Google Cloud, which will store your file in a bucket.
+
+
 ## Running the tool
 
 
