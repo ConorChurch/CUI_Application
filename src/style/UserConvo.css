@@ -22,7 +22,6 @@ html, body {
   word-wrap: break-word;
   margin-top: 1px;
   margin-bottom: 1px;
-  max-height: 6rem;
 }
 
 .answer span {
@@ -45,7 +44,6 @@ html, body {
   word-wrap: break-word;
   margin-top: 1px;
   margin-bottom: 1px;
-  max-height: 6rem;
 }
 
 .dialogueBox {
