@@ -4,7 +4,8 @@
             "Screen Type": "phone"
         },
         {
-            "Button Type": ""
+            "Avatar Image": "/CUI_Application/images/AvatarMaker.png",
+            "Avatar Name": "Amy"
         }
     ],
     "Conversation": [

@@ -10,7 +10,6 @@ import axios from 'axios';
 
 class UserConvo extends React.Component { 
 
-  
   constructor(){
     super()
     this.state = {
@@ -24,7 +23,8 @@ class UserConvo extends React.Component {
       choices: [],
       timeTakenForCurrentQuestion: 0,
       screenType: data.Parameters[0]['Screen Type'],
-      waitForQuestion: false
+      waitForQuestion: false,
+      avatar: data.Parameters[1]['Avatar']
     }
     this.handleCallback = this.handleCallback.bind(this);
     this.handleEndOfConversation = this.handleEndOfConversation.bind(this);
@@ -114,7 +114,6 @@ class UserConvo extends React.Component {
           counter: prevState.counter+1,
           waitForQuestion: false
         }))
-        console.log(this.state.choices)
       }
       else{
         this.setState(prevState => ({
@@ -157,22 +156,26 @@ class UserConvo extends React.Component {
     }
 
     return (
-          <div className='dialogueBox'>
+          <>
+              {(this.state.answersDone === true) && <EndPage endMessage = {this.state.farewell}/>}
               {(this.state.answersDone === false) &&
-              <div className={this.state.screenType}>
-                {conversation}
+                <div className='dialogueBox'>
+                <header className={this.state.screenType + 'Header'}> 
+                  <img src={data.Parameters[1]['Avatar Image']} alt='Avatar' />
+                  <div className='name'>
+                    {data.Parameters[1]['Avatar Name']}
+                  </div> 
+                </header> 
+                <div className={this.state.screenType + 'Conversation'}>
+                  {conversation}
+                </div> 
+                <footer className={this.state.screenType+'Input'}>
+                  {(this.state.answersDone === false) && (this.state.freeText === true) && <TextBox parentCallback = {this.handleCallback} waitForQuestion = {this.waitForQuestion} />  }   
+                  {(this.state.answersDone === false) && (this.state.freeText === false) && <Buttons parentCallback = {this.handleCallback} choices={this.state.choices} waitForQuestion = {this.waitForQuestion} /> }
+                </footer> 
               </div>
               }
-
-              {(this.state.answersDone === true) && <EndPage endMessage = {this.state.farewell}/>}
-
-              {(this.state.answersDone === false) &&
-              <footer className={this.state.screenType+'Input'}>
-                {(this.state.answersDone === false) && (this.state.freeText === true) && <TextBox parentCallback = {this.handleCallback} waitForQuestion = {this.waitForQuestion} />  }   
-                {(this.state.answersDone === false) && (this.state.freeText === false) && <Buttons parentCallback = {this.handleCallback} choices={this.state.choices} waitForQuestion = {this.waitForQuestion} /> }
-              </footer> 
-              }
-          </div>
+          </>
     );
   }
 }
