@@ -169,7 +169,7 @@ class UserConvo extends React.Component {
                 <div className={this.state.screenType + 'Conversation'}>
                   {conversation}
                 </div> 
-                <footer className={this.state.screenType+'Input'}>
+                <footer className={this.state.screenType + 'Input'}>
                   {(this.state.answersDone === false) && (this.state.freeText === true) && <TextBox parentCallback = {this.handleCallback} waitForQuestion = {this.waitForQuestion} />  }   
                   {(this.state.answersDone === false) && (this.state.freeText === false) && <Buttons parentCallback = {this.handleCallback} choices={this.state.choices} waitForQuestion = {this.waitForQuestion} /> }
                 </footer> 

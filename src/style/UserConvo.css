@@ -63,8 +63,9 @@ html, body {
   width: 30%;
   box-sizing: border-box;
   margin: 0 auto;
-  border: 1;
+  border: 0;
   border-style: solid;
+  border-style: hidden solid solid solid;
 }
 
 .monitorConversation {
@@ -88,8 +89,6 @@ html, body {
   right: 50%;
   border: 1;
   border-style: hidden solid solid solid;
-  padding-top: 10px;
-  padding-bottom: 10px;
 }
 
 .phoneHeader {
@@ -123,8 +122,6 @@ html, body {
 header {
   background-color: navy;
   color: white;
-  position: relative;
-  box-sizing: border-box;
   display: flex;
   align-items: center;
 }
