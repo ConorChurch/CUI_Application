@@ -1,0 +1,13 @@
+.buttonBox {
+    text-align: center;
+  }
+  
+  .buttons {
+    flex-wrap: wrap;
+    display: inline-block;
+    border-radius: 25px;
+    padding: 5px 12px 5px 12px;
+    flex-direction: column;
+    word-wrap: break-word;
+    overflow: hidden;
+  }

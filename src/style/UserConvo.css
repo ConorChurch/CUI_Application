@@ -56,25 +56,18 @@ html, body {
   padding-top: 10px;
   display: flex;
   flex-direction: column;
-
-
 }
 
-.textInput {
-  display: inline-block;
-  border-radius: 25px;
-  padding: 5px 2px 5px 2px;
-  width: 65%;
-}
 
-.submitButton {
-  display: inline-block;
-  border-radius: 25px;
-  padding: 5px 2px 5px 2px;
+.monitorHeader {
   width: 30%;
+  box-sizing: border-box;
+  margin: 0 auto;
+  border: 1;
+  border-style: solid;
 }
 
-.monitor {
+.monitorConversation {
   height: 100%;
   width: 30%;
   right: 50%;
@@ -99,8 +92,14 @@ html, body {
   padding-bottom: 10px;
 }
 
+.phoneHeader {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  border: 0;
+}
 
-.phone {
+.phoneConversation {
   position: relative;
   height: 100%;
   width: 100%;
@@ -120,20 +119,25 @@ html, body {
   flex-direction: column;
 }
 
-.buttonBox {
-  text-align: center;
+
+header {
+  background-color: navy;
+  color: white;
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
 }
 
-.buttons {
-  flex-wrap: wrap;
-  display: inline-block;
+img {
   border-radius: 25px;
-  padding: 5px 12px 5px 12px;
-  flex-direction: column;
-  word-wrap: break-word;
-  overflow: hidden;
+  display: inline-block;
+  margin: 10px;
 }
-
-form {
-  text-align: center;
+.name {
+  justify-content: center;
+  display: flex;
+  padding-left: 2.5%;
+  margin: 0;
+  font-size: larger;
 }
