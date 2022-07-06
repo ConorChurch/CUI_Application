@@ -1,3 +1,4 @@
+import '../style/TextBox.css';
 import React from 'react';
 
   export class TextBox extends React.Component {
@@ -10,6 +11,7 @@ import React from 'react';
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
     }
 
 
@@ -17,31 +19,48 @@ import React from 'react';
     handleSubmit = event =>{
         event.preventDefault();
         if(this.props.waitForQuestion !== true){
-            this.props.parentCallback(this.state.userInput)
+            this.props.parentCallback(this.state.userInput);
         }
         this.setState({userInput: ""})
+        var textarea = document.getElementById('target');
+        textarea.setAttribute('style','');
+        textarea.value = "";
     }
 
-    handleChange({target}){
+    handleKeyDown = e => {
+        if(e.key === 'Enter'){
+            this.handleSubmit(e)
+        }
+    }
+
+    handleChange ({target}) {
+        target.style.height = "inherit";
+        target.style.height = `${target.scrollHeight}px`;
         this.setState({
             userInput: target.value
         })
+        
     }
 
     render() {
         return (
-            <form>
-                    <input
-                        className="textInput"
-                        placeholder='Type your response here...'
-                        type="text" 
-                        name="userInput"
-                        value={this.state.userInput}
-                        onChange={this.handleChange}
-                    />
-                    <input className="submitButton"
-                        type="submit" onClick={this.handleSubmit}/>
+            <>
+            <form onSubmit={this.handleSubmit}>
+                <textarea
+                    id='target'
+                    className='textInput'
+                    placeholder='Type your response here...'
+                    type="text" 
+                    name="userInput"
+                    onChange={this.handleChange}
+                    onKeyDown={this.handleKeyDown}
+                />
+                <input 
+                    className="submitButton"
+                    type="submit"
+                />
             </form>
+            </>
         )
     }
 

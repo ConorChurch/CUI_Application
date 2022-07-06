@@ -1,4 +1,5 @@
 import React from 'react';
+import '../style/Buttons.css';
 
   export class Buttons extends React.Component {
 

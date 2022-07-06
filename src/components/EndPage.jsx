@@ -1,4 +1,5 @@
 import React from 'react';
+import '../style/EndPage.css'
 import { Component } from 'react';
 
 class EndPage extends Component{
