@@ -2,7 +2,7 @@
     text-align: center;
   }
   
-  .buttons {
+.buttons {
     flex-wrap: wrap;
     display: inline-block;
     border-radius: 25px;

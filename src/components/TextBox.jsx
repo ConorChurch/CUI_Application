@@ -44,7 +44,7 @@ import React from 'react';
 
     render() {
         return (
-            <>
+            <span>
             <form onSubmit={this.handleSubmit}>
                 <textarea
                     id='target'
@@ -60,7 +60,7 @@ import React from 'react';
                     type="submit"
                 />
             </form>
-            </>
+            </span>
         )
     }
 
