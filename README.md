@@ -25,6 +25,9 @@ The third part of each question is the message of the question to be asked.
 
 For the "choice" questions, that will be an array in itself with the different answer choices. There will be a limit of four answers for the multiple choice questions. 
 
+For the "choice" questions, each answer will have a limit of 32 characters on the phone option and 30 for the monitor options before these answers will be cut off.
+These are based off of a small phone screen and small laptop screen, so the bigger the screen on each, the more characters before they are cut off.
+
 Lastly the farewell message that is displayed to the user when the conversation has ended.
 
 ### Configure output
