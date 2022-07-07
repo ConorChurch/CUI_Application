@@ -62,37 +62,51 @@ class UserConvo extends React.Component {
   }
 
   // This method handles the answer that is given to add to the conversation array
-  handleCallback = (textInput) => {
+  handleCallback = (response) => {
+      console.log(response)
+      var textInput = response;
+      if(response.Answer !== undefined && response.Answer !== null){
 
-    var answer;
-    console.log(this.state.questionsArray.length-1)
-    
-    if(this.state.questionsArray[this.state.questionsArray.length-1].type !== "question"){
-      this.setState ({
-        waitForQuestion: true
-      })
-    }
-    else{
-      answer = [...this.state.questionsArray, {type: "answer", message: textInput, timeTakenForCurrentQuestion: this.state.timeTakenForCurrentQuestion}];
-    
-      if(this.state.counter >= data.Conversation.length){
-        
-        setTimeout(() => {
-          this.handleEndOfConversation(answer)
-          this.setState({answersDone: true})
-        }, 2000)
-        
+        textInput = response.Answer;
+        console.log("Text input recorded " +textInput)
+      }
+      
+      var answer;
+      console.log(this.state.questionsArray.length-1)
+      
+      if(this.state.questionsArray[this.state.questionsArray.length-1].type !== "question"){
+        this.setState ({
+          waitForQuestion: true
+        })
       }
       else{
+        answer = [...this.state.questionsArray, {type: "answer", message: textInput, timeTakenForCurrentQuestion: this.state.timeTakenForCurrentQuestion}];
+      
+        if(this.state.counter >= data.Conversation.length){
+          
+          setTimeout(() => {
+            this.handleEndOfConversation(answer)
+            this.setState({answersDone: true})
+          }, 2000)
+          
+        }
+        else{
 
-        this.setState(() => ({
-          questionsArray:  answer
-        }))
-        this.resetTimer();
-        this.appendQuestion(answer);
+          this.setState(() => ({
+            questionsArray:  answer
+          }))
+          this.resetTimer();
+          
+          if(response.Type !== undefined){
+            this.nestedQuestions(answer, response);
+          }
+          else{
+            this.appendQuestion(answer);
+          }
 
+        }
       }
-    }
+    
   }
 
 
@@ -136,6 +150,51 @@ class UserConvo extends React.Component {
     }, 2000)
 
   }
+
+
+
+  nestedQuestions = (answer, response) => {
+
+    console.log("We got this far")
+
+    var newQuestions;
+    newQuestions  = [...this.state.questionsArray, answer[answer.length-1], {type: "question", message: response.Message}];
+    
+    setTimeout(() => {
+    
+      if(response.Type === "choice"){
+        if(response.Choices.length <= 4){
+          this.setState(prevState => ({
+            choices: response.Choices,
+            freeText: false,
+            questionsArray:  newQuestions,
+            waitForQuestion: false
+          }))
+        }
+        else{
+          this.setState(prevState => ({
+            choices: response.Choices.slice(0,4),
+            freeText: false,
+            questionsArray:  newQuestions,
+            waitForQuestion: false
+          }))
+        }
+      }
+      else{
+        this.setState(prevState => ({
+          freeText: true,
+          questionsArray:  newQuestions,
+          waitForQuestion: false
+        }))
+      }
+    }, 2000)
+
+
+
+  }
+
+
+
 
   // Once the conversation has ended this method is called
   // It sends the completed conversation to the server

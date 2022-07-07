@@ -31,8 +31,10 @@ import '../style/Buttons.css';
     render() {
         const buttons = [];
         for( var i =0; i< this.props.choices.length; i++){
+
+            buttons.push(<button key={this.props.choices[i]} onClick={this.handleSubmit.bind(this.props.choices[i])}  className={this.props.choices[i]}>{this.props.choices[i]}</button>)
+
           
-          buttons.push(<button key={this.props.choices[i]} onClick={this.handleSubmit.bind(this.props.choices[i])}  className={this.props.choices[i]}>{this.props.choices[i]}</button>)
           
         }
         return (
@@ -40,8 +42,8 @@ import '../style/Buttons.css';
             <div className='buttonBox'>
 
                 {this.props.choices?.map((choice,i) => (
-                        <button key={i} value={choice} className="buttons" onClick={() => this.handleSubmit(choice)}>
-                            {choice}
+                        <button key={i} value={choice.Answer} className="buttons" onClick={() => this.handleSubmit(choice)}>
+                            {choice.Answer}
                         </button>
                 ))}
             </div>

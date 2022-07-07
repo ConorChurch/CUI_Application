@@ -10,29 +10,51 @@
     ],
     "Conversation": [
         {
-            "Question": 1,
             "Type": "free",
             "Message": "What's your name?"
         },
         {
-            "Question": 2,
             "Type": "free",
             "Message": "What's your age?"
         },
         {
-            "Question": 3,
             "Type": "free",
             "Message": "Where do you live?"
         },
         {
-            "Question": 4,
+            "Type": "choice",
+            "Message": "What's the weather like?",
+            "Choices": [
+                {"Answer": "Warm"},
+                {"Answer": "Cold"},
+                {"Answer": "Windy"}
+            ]
+        },
+        {
             "Type": "choice",
             "Message": "How are you feeling today?",
             "Choices": [
-                "Good",
-                "Bad",
-                "Indifferent"
+                {
+                    "Answer": "Good",
+                    "Type": "choice",
+                    "Message": "How Come so good?",
+                    "Choices": [
+                        {"Answer": "The Sun is out"},
+                        {"Answer":"I'm going to play Frisbee"},
+                        {"Answer":"I got this working"}
+                    ]
+                },
+                {
+                    "Answer": "Bad",
+                    "Type": "free",
+                    "Message": "How come so bad?"
+                },
+                {"Answer": "Indifferent"}
             ]
+        },
+        {
+            "Type": "free",
+            "Message": "Did this work?"
         }
     ],
     "Farewell": "Thank you for taking the survey"
