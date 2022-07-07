@@ -106,14 +106,24 @@ class UserConvo extends React.Component {
     setTimeout(() => {
     
       if(data.Conversation.at(this.state.counter).Type === "choice"){
-          
-        this.setState(prevState => ({
-          choices: data.Conversation.at(this.state.counter).Choices,
-          freeText: false,
-          questionsArray:  newQuestions,
-          counter: prevState.counter+1,
-          waitForQuestion: false
-        }))
+        if(data.Conversation.at(this.state.counter).Choices.length <= 4){
+          this.setState(prevState => ({
+            choices: data.Conversation.at(this.state.counter).Choices,
+            freeText: false,
+            questionsArray:  newQuestions,
+            counter: prevState.counter+1,
+            waitForQuestion: false
+          }))
+        }
+        else{
+          this.setState(prevState => ({
+            choices: data.Conversation.at(this.state.counter).Choices.slice(0,4),
+            freeText: false,
+            questionsArray:  newQuestions,
+            counter: prevState.counter+1,
+            waitForQuestion: false
+          }))
+        }
       }
       else{
         this.setState(prevState => ({
