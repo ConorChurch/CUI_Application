@@ -25,9 +25,15 @@
             "Type": "choice",
             "Message": "What's the weather like?",
             "Choices": [
-                {"Answer": "Warm"},
-                {"Answer": "Cold"},
-                {"Answer": "Windy"}
+                {
+                    "Answer": "Warm"
+                },
+                {
+                    "Answer": "Cold"
+                },
+                {
+                    "Answer": "Windy"
+                }
             ]
         },
         {
@@ -39,9 +45,15 @@
                     "Type": "choice",
                     "Message": "How Come so good?",
                     "Choices": [
-                        {"Answer": "The Sun is out"},
-                        {"Answer":"I'm going to play Frisbee"},
-                        {"Answer":"I got this working"}
+                        {
+                            "Answer": "The Sun is out"
+                        },
+                        {
+                            "Answer":"I'm going to play Frisbee"
+                        },
+                        {
+                            "Answer":"I got this working"
+                        }
                     ]
                 },
                 {
@@ -49,7 +61,9 @@
                     "Type": "free",
                     "Message": "How come so bad?"
                 },
-                {"Answer": "Indifferent"}
+                {
+                    "Answer": "Indifferent"
+                }
             ]
         },
         {

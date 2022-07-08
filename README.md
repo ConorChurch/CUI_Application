@@ -28,6 +28,8 @@ For the "choice" questions, that will be an array in itself with the different a
 For the "choice" questions, each answer will have a limit of 32 characters on the phone option and 30 for the monitor options before these answers will be cut off.
 These are based off of a small phone screen and small laptop screen, so the bigger the screen on each, the more characters before they are cut off.
 
+It is possible to nest choice questions within each other to provide different routes or conversations with different users. An example of how to structure this is in the "input.json" file. Depending on how a user is feeling they will receive a different follow-up question. Each answer in a multiple choice question is an object in order to check if it has another "choice" attribute for another question.
+
 Lastly the farewell message that is displayed to the user when the conversation has ended.
 
 ### Configure output

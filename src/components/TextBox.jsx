@@ -39,31 +39,29 @@ import React from 'react';
         this.setState({
             userInput: target.value
         })
-        
     }
 
     render() {
         return (
             <span>
-            <form onSubmit={this.handleSubmit}>
-                <textarea
-                    id='target'
-                    className='textInput'
-                    placeholder='Type your response here...'
-                    type="text" 
-                    name="userInput"
-                    onChange={this.handleChange}
-                    onKeyDown={this.handleKeyDown}
-                />
-                <input 
-                    className="submitButton"
-                    type="submit"
-                />
-            </form>
+                <form onSubmit={this.handleSubmit}>
+                    <textarea
+                        id='target'
+                        className='textInput'
+                        placeholder='Type your response here...'
+                        type="text" 
+                        name="userInput"
+                        onChange={this.handleChange}
+                        onKeyDown={this.handleKeyDown}
+                    />
+                    <input 
+                        className="submitButton"
+                        type="submit"
+                    />
+                </form>
             </span>
         )
     }
-
   }
 
   export default TextBox;

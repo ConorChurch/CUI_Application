@@ -82,19 +82,20 @@ class UserConvo extends React.Component {
       else{
         answer = [...this.state.questionsArray, {type: "answer", message: textInput, timeTakenForCurrentQuestion: this.state.timeTakenForCurrentQuestion}];
       
+        this.setState(() => ({
+          questionsArray:  answer
+        }))
         if(this.state.counter >= data.Conversation.length){
           
           setTimeout(() => {
             this.handleEndOfConversation(answer)
-            this.setState({answersDone: true})
+            this.setState({
+              answersDone: true
+            })
           }, 2000)
           
         }
         else{
-
-          this.setState(() => ({
-            questionsArray:  answer
-          }))
           this.resetTimer();
           
           if(response.Type !== undefined){
