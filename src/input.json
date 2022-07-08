@@ -43,7 +43,7 @@
                 {
                     "Answer": "Good",
                     "Type": "choice",
-                    "Message": "How Come so good?",
+                    "Message": "Why good?",
                     "Choices": [
                         {
                             "Answer": "The Sun is out"
@@ -59,7 +59,7 @@
                 {
                     "Answer": "Bad",
                     "Type": "free",
-                    "Message": "How come so bad?"
+                    "Message": "Why bad?"
                 },
                 {
                     "Answer": "Indifferent"
@@ -71,5 +71,5 @@
             "Message": "Did this work?"
         }
     ],
-    "Farewell": "Thank you for taking the survey"
+    "Farewell": "Thank you for taking the survey!"
 }

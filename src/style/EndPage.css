@@ -1,0 +1,15 @@
+.center {
+    background-color: #89CFF0;
+    color: navy;
+    height: 7rem;
+    width: 100%;
+    display: flex;
+    margin: auto;
+}
+
+h1 {
+    margin: auto;
+    vertical-align: middle;
+    word-wrap: normal;
+    text-align: center;
+}

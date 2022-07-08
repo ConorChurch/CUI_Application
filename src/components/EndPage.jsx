@@ -8,7 +8,7 @@ class EndPage extends Component{
       render(){
         return (
             
-            <div>
+            <div className='center'>
                 <h1> {this.props.endMessage} </h1>
             </div>
         
