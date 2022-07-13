@@ -64,16 +64,12 @@ class UserConvo extends React.Component {
 
   // This method handles the answer that is given to add to the conversation array
   handleCallback = (response) => {
-      console.log(response)
       var textInput = response;
       if(response.Answer !== undefined && response.Answer !== null){
-
         textInput = response.Answer;
-        console.log("Text input recorded " +textInput)
       }
       
       var answer;
-      console.log(this.state.questionsArray.length-1)
       
       if(this.state.questionsArray[this.state.questionsArray.length-1].type !== "question"){
         this.setState ({
@@ -156,8 +152,6 @@ class UserConvo extends React.Component {
 
 
   nestedQuestions = (answer, response) => {
-
-    console.log("We got this far")
 
     var newQuestions;
     newQuestions  = [...this.state.questionsArray, answer[answer.length-1], {type: "question", message: response.Message}];
