@@ -2,6 +2,15 @@ import json
 from cryptography.fernet import Fernet
 import datetime
 
+""" 
+
+Function for encrypting the conversation
+
+Arguments:
+
+Date that the conversation was completed
+
+"""
 def encrypt(date):
 
     input_file = open('../src/input.json')

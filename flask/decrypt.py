@@ -2,6 +2,16 @@ import json
 import sys
 from cryptography.fernet import Fernet
 
+""" 
+
+Function for decrypting the encrypted conversation
+
+Arguments:
+
+Date that the conversation was completed
+Key used to decrypt the file
+
+"""
 def decrypt(argv):
     input_file = open('../src/input.json')
     data = json.load(input_file)
