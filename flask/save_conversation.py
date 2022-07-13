@@ -5,53 +5,42 @@ from urllib import response
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 import datetime
-from key_generation import key_generation
-
-
-API_KEY = ""
-key = ""
-date = datetime.datetime.now()
+from encrypt import encrypt
+import json
+from send_to_database import send_to_database
 
 
 app = Flask(__name__, static_folder='/')
 CORS(app)
 
-
 app.logger.setLevel(logging.INFO)
 
 # Serve React App
 @app.route('/save', defaults={'path': ''}, methods=["POST"])
-#@app.route('/<path:path>', methods=["POST"])
 def serve(path):
     print("test")
     print("hello", file=sys.stderr)
-
+    date = datetime.datetime.now()
     data = request.get_json(force=True)
     print(data)
 
-    with open("output"+date+".txt", "w") as f:
+    with open("output"+str(date)+".txt", "w") as f:
         for item in data:
             f.write("%s\n" % item)
         print("Done")
 
-    key_generation(date)
-    checkForDatabase()         
-
+    checkForDatabase(date) 
+    encrypt(date)
     return jsonify(data)
-    if path != "" and os.path.exists(app.static_folder + '/' + path):
-        print("We made it", file=sys.stderr)
-        return send_from_directory(app.static_folder, path)
-    else:
-        print("We didn't make it", file=sys.stderr)
 
-        return send_from_directory(app.static_folder, 'index.html')
 
-def checkForDatabase():
-    if API_KEY != "":
+def checkForDatabase(date):
+
+    if os.stat("./GOOGLE_APPLICATION_CREDENTIALS.json").st_size == "":
         print("Database available")
+        send_to_database(date)
     else:
         print("No Database available")
-
 
 
 

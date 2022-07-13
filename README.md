@@ -40,14 +40,40 @@ Currently the results of the conversation will be sent to the backend server at 
 
 Another solution is to have a reverse proxy to allow traffic to the backend server.
 
-You will need to change "UserConvo.jsx" on line 133 to the url to the address you are running the server on. Make sure to keep the "/save" endpoint at the end of your url so the conversation is sent to the backend e.g "<your url>/save".
+You will need to change "Server Address" parameter in the input.json file to the url address you are running the server on.
 
 #### Encryption and Database
 
-(TO DO)
+When the conversation runs it will automatically encrypt the conversation and save it locally in the "/flask" folder.
+These are created with name "output" and the the current timestamp of CUI completion appended to the end. 
 
+***In order to encrypt and decrypt the files you will first need to create an ecnryption key.***
 
-The Cloud storage currently used is Google Cloud, which will store your file in a bucket.
+This can be done by running:
+
+### `python3 key_generation.py`
+
+This will create a file "filekey.key". Once created, please add the key to the "Encryption/Decryption Key" parameter in the input.json file.
+
+At the end of the conversation if you wish to decrypt the the conversation, please run:
+
+### `python3 decrypt.py <name of file>`
+
+"<name of file>" denotes the output file you wish to decrypt.
+
+##### Cloud option
+
+If you wish to pair your cloud provider storage this tool caters to that too.
+
+The Cloud storage currently used is Google Cloud, which will store your each conversation file in a bucket.
+
+In order to set up the storage, please follow the instructions here:
+
+https://cloud.google.com/storage/docs/reference/libraries
+
+Once you have created the json key file, copy and paste the contents to the "GOOGLE_APPLICATION_CREDENTIALS.json" file found in the flask folder.
+
+This should configure when the application is run.
 
 
 ## Running the tool
@@ -94,7 +120,7 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
 
-In the "/flask", you can run:
+In the "/flask" folder, you can run:
 
 ### `python saveConversationAPI.py` or `python3 saveConversationAPI.py`
 

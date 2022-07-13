@@ -24,7 +24,8 @@ class UserConvo extends React.Component {
       timeTakenForCurrentQuestion: 0,
       screenType: data.Parameters[0]['Screen Type'],
       waitForQuestion: false,
-      avatar: data.Parameters[1]['Avatar']
+      avatar: data.Parameters[1]['Avatar'],
+      serverAddress: data.Parameters[4]['Server Address']
     }
     this.handleCallback = this.handleCallback.bind(this);
     this.handleEndOfConversation = this.handleEndOfConversation.bind(this);
@@ -201,13 +202,14 @@ class UserConvo extends React.Component {
   // It sends the completed conversation to the server
   handleEndOfConversation = (conversation) => {
     axios
-      .post("http://127.0.0.1:28001/save", conversation)
+      .post(this.state.serverAddress+"/save", conversation)
       .then(res => {
         if(res.data["status code"] === "200"){
           console.log(conversation)
         }
       }).catch((error) => {
         console.log(conversation)
+        console.log("THE ERROR IS "+error)
       });
   }
 
