@@ -1,7 +1,7 @@
 import React from 'react';
 import '../style/Buttons.css';
 
-
+  // This component is responsible for displaying button options to the User
   export class Buttons extends React.Component {
 
     constructor(props){
@@ -9,22 +9,16 @@ import '../style/Buttons.css';
         this.state = {
             userInput: ""
         };
-        this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        console.log(this.props.choices)
     }
 
+    // When a button is clicked the string is sent back to the parent function
     handleSubmit (buttonValue){
         this.props.parentCallback(buttonValue)
         this.setState({userInput: buttonValue})
     }
 
-    handleChange({target}){
-        this.setState({
-            userInput: target
-        }) 
-    }
-
+    // Renders the list of buttons the input file has given
     render() {
         const buttons = [];
         for( var i =0; i< this.props.choices.length; i++){

@@ -4,19 +4,12 @@
             "Screen Type": "phone"
         },
         {
-            "Avatar Image": "/CUI_Application/images/AvatarMaker.png",
+            "Avatar Image": "/images/AvatarMaker.png",
             "Avatar Name": "Amy"
         },
         {
-            "Encryption/Decryption Key": ""
-        },
-        {
-            "Database Credentials": "my-cui-app/flask/GOOGLE_APPLICATION_CREDENTIALS.json"
-        },
-        {
-            "Server Address": "http://127.0.0.1:28001"
+            "Server Address": "http://127.0.0.1:33507"
         }
-
     ],
     "Conversation": [
         {
@@ -78,7 +71,7 @@
         },
         {
             "Type": "free",
-            "Message": "Did this work?"
+            "Message": "Did you enjoy chatting today?"
         }
     ],
     "Farewell": "Thank you for taking the survey!"

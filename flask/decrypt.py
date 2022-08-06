@@ -1,4 +1,3 @@
-import json
 import sys
 from cryptography.fernet import Fernet
 
@@ -8,25 +7,24 @@ Function for decrypting the encrypted conversation
 
 Arguments:
 
-Date that the conversation was completed
-Key used to decrypt the file
+Name of file to decrypt
 
 """
 def decrypt(argv):
-    input_file = open('../src/input.json')
-    data = json.load(input_file)
 
-    date = argv[1]
+    name_of_file = argv[1]
 
-    key = data['Parameters'][2]["Encryption/Decryption Key"]
+    with open("filekey.key", "rb") as key_file:
+        key = key_file.read()
+
     fernet = Fernet(key)
-    
-    with open("output"+str(date)+".txt", "rb") as encrypted_file:
+
+    with open(name_of_file, "rb") as encrypted_file:
         encrypted = encrypted_file.read()
 
     decrypted = fernet.decrypt(encrypted)
 
-    with open("output"+str(date)+".txt", "wb") as decrpted_output:
+    with open(name_of_file, "wb") as decrpted_output:
         decrpted_output.write(decrypted)
 
 if __name__ == '__main__':

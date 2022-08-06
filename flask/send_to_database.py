@@ -1,11 +1,20 @@
 from google.cloud import storage
-import json
 import os
 
+""" 
 
+Function for sending conversation to the database if one is provided
+Creates a Google Cloud bucket if it doesn't exist already
+
+Arguments:
+
+Date that the conversation was completed
+
+"""
 
 def send_to_database(date):
-    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'GOOGLE_APPLICATION_CREDENTIALS.json'
+    relative_path = os.path.relpath("/my-cui-app/flask/GOOGLE_APPLICATION_CREDENTIALS.json", "/my-cui-app")
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = relative_path
     storage_client = storage.Client()
 
     bucket_name = "cui_storage"
@@ -16,7 +25,7 @@ def send_to_database(date):
     
     blob = bucket.blob("/CUI_Storage/CUI_"+str(date))
 
-    blob.upload_from_filename("./output"+str(date)+".txt")
+    blob.upload_from_filename("./conversations/output"+str(date)+".txt")
 
     print(
         f"File output"+str(date)+".txt uploaded."

@@ -1,8 +1,9 @@
 import '../style/TextBox.css';
 import React from 'react';
 
-  export class TextBox extends React.Component {
 
+  // This component is responsible for handling the input text box and submit button
+  export class TextBox extends React.Component {
 
     constructor(props){
         super(props)
@@ -15,7 +16,7 @@ import React from 'react';
     }
 
 
-
+    // When the form has been submitted, the parent function is called with the returned message to be printed
     handleSubmit = event =>{
         event.preventDefault();
         if(this.props.waitForQuestion !== true){
@@ -27,12 +28,14 @@ import React from 'react';
         textarea.value = "";
     }
 
+    // This checks for if the key entered is "Enter" key
     handleKeyDown = e => {
         if(e.key === 'Enter'){
             this.handleSubmit(e)
         }
     }
 
+    // When the text box changes the height changes relative to the number of the scroll height
     handleChange ({target}) {
         target.style.height = "inherit";
         target.style.height = `${target.scrollHeight}px`;
@@ -41,6 +44,7 @@ import React from 'react';
         })
     }
 
+    // Renders form in a span so it can expand to size needed
     render() {
         return (
             <span>

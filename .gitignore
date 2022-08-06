@@ -8,8 +8,10 @@
 # testing
 /coverage
 
-# production
-/build
+# packaging
+build/
+flask/__pycache__/
+
 
 # misc
 .DS_Store

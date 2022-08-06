@@ -1,6 +1,6 @@
 {
   "name": "my-cui-app",
-  "homepage": "https://conorchurch.github.io/CUI_Application/",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -13,9 +13,11 @@
     "react-dom": "^18.0.2",
     "react-responsive": "^9.0.0-beta.10",
     "react-scripts": "^5.0.1",
+    "serve": "^14.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "dev": "react-scripts start",
     "start": "react-scripts start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",

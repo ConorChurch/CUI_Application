@@ -1,6 +1,5 @@
-import json
 from cryptography.fernet import Fernet
-import datetime
+import os
 
 """ 
 
@@ -13,18 +12,18 @@ Date that the conversation was completed
 """
 def encrypt(date):
 
-    input_file = open('../src/input.json')
-    data = json.load(input_file)
-
-    key = data['Parameters'][2]["Encryption/Decryption Key"]
+    with open("filekey.key", "rb") as key_file:
+        key = key_file.read()
     fernet = Fernet(key)
     
-    with open("output"+str(date)+".txt", "rb") as file:
+    relative_conversation_path = os.path.relpath("/my-cui-app/conversations/", "/my-cui-app")
+    path_of_file = os.path.join(relative_conversation_path,"output"+str(date)+".txt")
+    with open(path_of_file, "rb") as file:
         original = file.read()
 
     encrypted = fernet.encrypt(original)
 
-    with open("output"+str(date)+".txt", "wb") as encrpted_output:
+    with open(path_of_file, "wb") as encrpted_output:
         encrpted_output.write(encrypted)
 
 

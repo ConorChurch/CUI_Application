@@ -8,6 +8,8 @@ import EndPage from './EndPage';
 import axios from 'axios';
 
 
+// Component for handling the conversation rendering and posting to the /save endpoint
+
 class UserConvo extends React.Component { 
 
   constructor(){
@@ -25,7 +27,7 @@ class UserConvo extends React.Component {
       screenType: data.Parameters[0]['Screen Type'],
       waitForQuestion: false,
       avatar: data.Parameters[1]['Avatar'],
-      serverAddress: data.Parameters[4]['Server Address']
+      serverAddress: data.Parameters[2]['Server Address']
     }
     this.handleCallback = this.handleCallback.bind(this);
     this.handleEndOfConversation = this.handleEndOfConversation.bind(this);
@@ -104,7 +106,6 @@ class UserConvo extends React.Component {
 
         }
       }
-    
   }
 
 
@@ -146,11 +147,12 @@ class UserConvo extends React.Component {
         }))
       }
     }, 2000)
-
   }
 
 
-
+  // If the answer object returned from the multiple choice question has a "Type" it is another nested 
+  // question and this function is callled instead of the normal appendQuestion
+  // Very similar to the function above except it doesn't add to the counter
   nestedQuestions = (answer, response) => {
 
     var newQuestions;
@@ -184,12 +186,7 @@ class UserConvo extends React.Component {
         }))
       }
     }, 2000)
-
-
-
   }
-
-
 
 
   // Once the conversation has ended this method is called
@@ -204,11 +201,13 @@ class UserConvo extends React.Component {
       }).catch((error) => {
         console.log(conversation)
         console.log("THE ERROR IS "+error)
+        console.log(error.response.data)
       });
   }
 
 
   // The render method will display each message of the conversation as it arrives
+  // It will only render an answer if the string is not answer, but an empty string is still accepted as an answer
   render(){
 
     const conversation = [];
