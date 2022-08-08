@@ -16,7 +16,9 @@ def encrypt(date):
         key = key_file.read()
     fernet = Fernet(key)
     
+
     relative_conversation_path = os.path.relpath("/my-cui-app/conversations/", "/my-cui-app")
+
     path_of_file = os.path.join(relative_conversation_path,"output"+str(date)+".txt")
     with open(path_of_file, "rb") as file:
         original = file.read()

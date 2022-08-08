@@ -7,6 +7,7 @@ import datetime
 from encrypt import encrypt
 from key_generation import key_generation
 from send_to_database import send_to_database
+import json
 
 
 """ 
@@ -43,6 +44,15 @@ def serve(path):
     print(data)
 
     # Create a file and write the conversation to it
+    
+
+    if os.path.isdir(os.path.relpath("/my-cui-app/conversations/", "/my-cui-app")) == False:
+        directory = "conversations"
+        parent_dir = os.path.relpath("/my-cui-app/", "/my-cui-app")
+        path = os.path.join(parent_dir, directory)
+        os.makedirs(path)
+        print("conversations directory created")
+
     relative_conversation_path = os.path.relpath("/my-cui-app/conversations/", "/my-cui-app")
     name_of_file = os.path.join(relative_conversation_path,"output"+str(date)+".txt")
     with open(name_of_file, "w") as f:
@@ -76,7 +86,7 @@ Date that the conversation was completed
 
 def checkForDatabase(date):
     relative_path = os.path.relpath("/my-cui-app/flask/GOOGLE_APPLICATION_CREDENTIALS.json", "/my-cui-app")
-    if os.stat(relative_path).st_size != "":
+    if os.stat(relative_path).st_size != 0:
         print("Database available")
         send_to_database(date)
     else:
