@@ -170,7 +170,7 @@ In the project directory, you can run:
 
 This will install the node modules needed to run the tool
 
-### `pip install`
+### `pip install -r requirements.txt`
 
 This will install the packages needed to run the tool
 
