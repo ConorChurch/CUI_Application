@@ -5,9 +5,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import datetime
 from encrypt import encrypt
-from key_generation import key_generation
 from send_to_database import send_to_database
-import json
 
 
 """ 
@@ -62,11 +60,7 @@ def serve(path):
 
     # Check if the database credentials exist and/or push to database
     checkForDatabase(date)
-    relative_path = os.path.relpath("/my-cui-app/filekey.key", "/my-cui-app")
-    # If the key file does not exists then use it, else create new one
-    if os.path.exists(relative_path) != True:
-        print("New Key Generated") 
-        key_generation()
+
 
     # Call the encryption function to encrypt the file
     encrypt(date)

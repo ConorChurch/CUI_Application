@@ -1,5 +1,6 @@
 from cryptography.fernet import Fernet
 import os
+from key_generation import key_generation
 
 """ 
 
@@ -11,6 +12,13 @@ Date that the conversation was completed
 
 """
 def encrypt(date):
+
+
+    relative_path = os.path.relpath("/my-cui-app/filekey.key", "/my-cui-app")
+    # If the key file does not exists then use it, else create new one
+    if os.path.exists(relative_path) != True:
+        print("New Key Generated") 
+        key_generation()
 
     with open("filekey.key", "rb") as key_file:
         key = key_file.read()
