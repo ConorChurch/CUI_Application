@@ -39,7 +39,7 @@ Checks for encryption key existence and database config file
 def serve(path):
     date = datetime.datetime.now()
     data = request.get_json(force=True)
-    print(data)
+    
 
     # Create a file and write the conversation to it
     
