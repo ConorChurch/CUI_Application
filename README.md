@@ -201,3 +201,10 @@ In the "/flask" folder, you can run:
 ### `python save_conversation.py` or `python3 save_conversation.py`
 
 This will run the server to receive the incoming conversation and deploy the built frontend to the server.
+
+
+### `docker build -t <name of image> .` and `docker run -p 33507:33507 --name <name of container> <name of image>`
+
+If you have Docker installed, you can run the commands above.
+They will perform all the commands from "npm install" to deploying the application.
+It will then be hosted in a Docker container on your server space. 
