@@ -57,69 +57,76 @@ html, body {
   flex-direction: column;
 }
 
-.monitorHeader {
-  width: 30%;
-  box-sizing: border-box;
-  margin: 0 auto;
-  border: 0;
-  border-style: solid;
-  border-style: hidden solid solid solid;
+@media only screen and (min-width: 769px) {
+
+  .Header {
+    width: 30%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    border: 0;
+    border-style: solid;
+    border-style: hidden solid solid solid;
+  }
+
+  .Conversation {
+    height: 100%;
+    width: 30%;
+    right: 50%;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    margin: 0 auto;
+    border: 1;
+    border-style: solid;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+
+  .Input {
+    bottom: 0;
+    margin: 0 auto;
+    box-sizing: border-box;
+    width: 30%;
+    right: 50%;
+    border: 1;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    background-color: #89CFF0;
+    border-style: hidden solid solid solid;
+  }
 }
 
-.monitorConversation {
-  height: 100%;
-  width: 30%;
-  right: 50%;
-  box-sizing: border-box;
-  overflow-y: scroll;
-  margin: 0 auto;
-  border: 1;
-  border-style: solid;
-  padding-bottom: 10px;
-  padding-top: 10px;
+@media only screen and (max-width: 768px) {
+
+  .Header {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    border: 0;
+  }
+  
+  .Conversation {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
+    margin: 0 auto;
+    border: 0;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+  
+  .Input {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background-color: #89CFF0;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+  }
 }
 
-.monitorInput {
-  bottom: 0;
-  margin: 0 auto;
-  box-sizing: border-box;
-  width: 30%;
-  right: 50%;
-  border: 1;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  background-color: #89CFF0;
-  border-style: hidden solid solid solid;
-}
-
-.phoneHeader {
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
-  border: 0;
-}
-
-.phoneConversation {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  overflow: scroll;
-  margin: 0 auto;
-  border: 0;
-  padding-bottom: 10px;
-  padding-top: 10px;
-}
-
-.phoneInput {
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  background-color: #89CFF0;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  display: flex;
-  flex-direction: column;
-}
 
 header {
   background-color: navy;

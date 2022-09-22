@@ -24,10 +24,9 @@ class UserConvo extends React.Component {
       freeText: true,
       choices: [],
       timeTakenForCurrentQuestion: 0,
-      screenType: data.Parameters[0]['Screen Type'],
       waitForQuestion: false,
-      avatar: data.Parameters[1]['Avatar'],
-      serverAddress: data.Parameters[2]['Server Address']
+      avatar: data.Parameters[0]['Avatar'],
+      serverAddress: data.Parameters[1]['Server Address']
     }
     this.handleCallback = this.handleCallback.bind(this);
     this.handleEndOfConversation = this.handleEndOfConversation.bind(this);
@@ -225,16 +224,16 @@ class UserConvo extends React.Component {
               {(this.state.answersDone === true) && <EndPage endMessage = {this.state.farewell}/>}
               {(this.state.answersDone === false) &&
                 <div className='dialogueBox'>
-                <header className={this.state.screenType + 'Header'}> 
-                  <img src={data.Parameters[1]['Avatar Image']} alt='Avatar' />
+                <header className='Header'> 
+                  <img src={data.Parameters[0]['Avatar Image']} alt='Avatar' />
                   <div className='name'>
-                    {data.Parameters[1]['Avatar Name']}
+                    {data.Parameters[0]['Avatar Name']}
                   </div> 
                 </header> 
-                <div className={this.state.screenType + 'Conversation'}>
+                <div className='Conversation'>
                   {conversation}
                 </div> 
-                <footer className={this.state.screenType + 'Input'}>
+                <footer className='Input'>
                   {(this.state.answersDone === false) && (this.state.freeText === true) && <TextBox parentCallback = {this.handleCallback} waitForQuestion = {this.waitForQuestion} />  }   
                   {(this.state.answersDone === false) && (this.state.freeText === false) && <Buttons parentCallback = {this.handleCallback} choices={this.state.choices} waitForQuestion = {this.waitForQuestion} /> }
                 </footer> 

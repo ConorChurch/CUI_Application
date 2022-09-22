@@ -1,9 +1,6 @@
 {
     "Parameters": [
         {
-            "Screen Type": "phone"
-        },
-        {
             "Avatar Image": "/images/AvatarMaker.png",
             "Avatar Name": "Amy"
         },
