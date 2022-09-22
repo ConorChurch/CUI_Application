@@ -224,16 +224,16 @@ class UserConvo extends React.Component {
               {(this.state.answersDone === true) && <EndPage endMessage = {this.state.farewell}/>}
               {(this.state.answersDone === false) &&
                 <div className='dialogueBox'>
-                <header className='Header'> 
+                <header className='header'> 
                   <img src={data.Parameters[0]['Avatar Image']} alt='Avatar' />
                   <div className='name'>
                     {data.Parameters[0]['Avatar Name']}
                   </div> 
                 </header> 
-                <div className='Conversation'>
+                <div className='conversation'>
                   {conversation}
                 </div> 
-                <footer className='Input'>
+                <footer className='input'>
                   {(this.state.answersDone === false) && (this.state.freeText === true) && <TextBox parentCallback = {this.handleCallback} waitForQuestion = {this.waitForQuestion} />  }   
                   {(this.state.answersDone === false) && (this.state.freeText === false) && <Buttons parentCallback = {this.handleCallback} choices={this.state.choices} waitForQuestion = {this.waitForQuestion} /> }
                 </footer> 

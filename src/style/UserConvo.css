@@ -59,7 +59,7 @@ html, body {
 
 @media only screen and (min-width: 769px) {
 
-  .Header {
+  .header {
     width: 30%;
     box-sizing: border-box;
     margin: 0 auto;
@@ -68,7 +68,7 @@ html, body {
     border-style: hidden solid solid solid;
   }
 
-  .Conversation {
+  .conversation {
     height: 100%;
     width: 30%;
     right: 50%;
@@ -81,7 +81,7 @@ html, body {
     padding-top: 10px;
   }
 
-  .Input {
+  .input {
     bottom: 0;
     margin: 0 auto;
     box-sizing: border-box;
@@ -97,14 +97,14 @@ html, body {
 
 @media only screen and (max-width: 768px) {
 
-  .Header {
+  .header {
     position: relative;
     width: 100%;
     margin: 0 auto;
     border: 0;
   }
   
-  .Conversation {
+  .conversation {
     position: relative;
     height: 100%;
     width: 100%;
@@ -115,7 +115,7 @@ html, body {
     padding-top: 10px;
   }
   
-  .Input {
+  .input {
     position: relative;
     bottom: 0;
     width: 100%;
