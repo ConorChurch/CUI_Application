@@ -79,7 +79,7 @@ class UserConvo extends React.Component {
       }
       else{
         answer = [...this.state.questionsArray, {type: "answer", message: textInput, timeTakenForCurrentQuestion: this.state.timeTakenForCurrentQuestion}];
-      
+        
         this.setState(() => ({
           questionsArray:  answer
         }))
@@ -112,11 +112,23 @@ class UserConvo extends React.Component {
   // It will not appear for the alloted time set in the timeout
   appendQuestion = (answer) => {
 
+
     var newQuestions;
-    newQuestions  = [...this.state.questionsArray, answer[answer.length-1], {type: "question", message: data.Conversation.at(this.state.counter).Message}];
+    newQuestions = [...this.state.questionsArray, answer[answer.length-1], {type: "waiting", message: "..."}];
     
+    // Adding dots to appear before the question
+    this.setState(prevState => ({
+      freeText: true,
+      questionsArray:  newQuestions,
+      counter: prevState.counter,
+      waitForQuestion: true
+    }))
+
+    
+
     setTimeout(() => {
-    
+      
+      newQuestions  = [...this.state.questionsArray.slice(0,this.state.questionsArray.length-2), answer[answer.length-1], {type: "question", message: data.Conversation.at(this.state.counter).Message}];
       if(data.Conversation.at(this.state.counter).Type === "choice"){
         if(data.Conversation.at(this.state.counter).Choices.length <= 4){
           this.setState(prevState => ({
@@ -155,10 +167,21 @@ class UserConvo extends React.Component {
   nestedQuestions = (answer, response) => {
 
     var newQuestions;
-    newQuestions  = [...this.state.questionsArray, answer[answer.length-1], {type: "question", message: response.Message}];
+    newQuestions = [...this.state.questionsArray, answer[answer.length-1], {type: "waiting", message: "..."}];
     
+    // Adding dots to appear before the question
+    this.setState(prevState => ({
+      freeText: true,
+      questionsArray:  newQuestions,
+      counter: prevState.counter,
+      waitForQuestion: true
+    }))
+
+
     setTimeout(() => {
     
+      newQuestions  = [...this.state.questionsArray.slice(0,this.state.questionsArray.length-2), answer[answer.length-1], {type: "question", message: response.Message}];
+
       if(response.Type === "choice"){
         if(response.Choices.length <= 4){
           this.setState(prevState => ({
@@ -211,8 +234,11 @@ class UserConvo extends React.Component {
 
     const conversation = [];
     for( var i =0; i< this.state.questionsArray.length; i++){
-      if(this.state.questionsArray[i].message !== ""){
+      if(this.state.questionsArray[i].message !== "" && this.state.questionsArray[i].message !== "..."){
         conversation.push(<div key={i} className={this.state.questionsArray[i].type}><span className={this.state.questionsArray[i].type}>{this.state.questionsArray[i].message}</span></div>)
+      }
+      else if(this.state.questionsArray[i].message === "..."){
+        conversation.push(<div key={i} className="stage"><div className={this.state.questionsArray[i].type}></div></div>)
       }
       else{
         conversation.push(<div key={i} className={this.state.questionsArray[i].type}>{this.state.questionsArray[i].message}</div>)
