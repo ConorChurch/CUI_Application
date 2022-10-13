@@ -1,6 +1,6 @@
 
 .textInput {
-    border-radius: 25px;
+    border-radius: 15px;
     padding: 5px 12px 5px 12px;
     width: 70%;
     max-width: 70%;
@@ -26,6 +26,9 @@
     border-radius: 25px;
     padding: 5px 2px 5px 2px;
     width: 5rem;
+    background-color: #2D68C4;
+    color: white;
+    border: 0;
     max-width: 7rem;
     font-size: large;
     box-sizing: border-box;
@@ -43,7 +46,7 @@ form {
   position: relative;
   display: flex;
   box-sizing: border-box;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 

@@ -1,10 +1,15 @@
 .buttonBox {
     text-align: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    display: flex;
+    
   }
   
 .buttons {
-    flex-wrap: wrap;
-    display: inline-block;
+    background-color: #2D68C4;
+    color: white;
+    border: 0;
     border-radius: 25px;
     padding: 5px 12px 5px 12px;
     flex-direction: column;
@@ -12,5 +17,6 @@
     overflow: hidden;
     font-size: large;
     max-width: 100%;
+    align-self: stretch;
   }
 

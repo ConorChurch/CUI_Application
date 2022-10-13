@@ -52,7 +52,7 @@ import React from 'react';
                     <textarea
                         id='target'
                         className='textInput'
-                        placeholder='Type your response here...'
+                        placeholder='Write a message...'
                         type="text" 
                         name="userInput"
                         onChange={this.handleChange}
@@ -61,6 +61,7 @@ import React from 'react';
                     <input 
                         className="submitButton"
                         type="submit"
+                        value={"Send"}
                     />
                 </form>
             </span>

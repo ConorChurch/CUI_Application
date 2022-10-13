@@ -134,14 +134,15 @@ header {
   align-items: center;
   font-size: larger;
   box-shadow: 0 6px 6px -6px black;
+  max-height: 4.5rem;
 }
 
 img {
-  border-radius: 25px;
+  border-radius: 50%;
   display: inline-block;
   margin: 10px;
-  max-width:100px;
-  max-height:100px;
+  max-width: 4.063rem;
+  max-height: 4.063rem;
 }
 
 .name {
