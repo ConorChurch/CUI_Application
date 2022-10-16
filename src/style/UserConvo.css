@@ -4,11 +4,11 @@ html, body {
 
 .question span {
   background-color: #E0E0E0;
-  padding: 5px 12px 5px 12px;
+  padding: 10px;
 }
 
 .question {
-  border-radius: 25px;
+  border-radius: 20px;
   padding: 2px 5px 2px 5px;
   max-width: 80%;
   text-align: left;
@@ -27,12 +27,12 @@ html, body {
 
 .answer span {
   background-color: #2D68C4;
-  padding: 5px 12px 5px 12px;
+  padding: 10px;
 }
 
 .answer {
-  border-radius: 25px;
-  padding: 2px 5px 2px 5px;
+  border-radius: 20px;
+  padding: 5px 12px 5px 12px;
   max-width: 80%;
   margin-left: auto;
   margin-right: 0;
