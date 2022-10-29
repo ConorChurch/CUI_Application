@@ -8,21 +8,13 @@ In this README, we will explain how to set up the CUI in your environment and ho
 
 ### Configure chatbot
 
-In order to run this tool you will need to configure the "input.json" with the different CUI parameters, your questions and the type of answers you would like from the user of the CUI and the type of screen the users will be using.
+In order to run this tool you will need to configure the "input.json" with the different CUI parameters, your questions and the type of answers you would like from the user of the CUI.
 
-The "input.json" file is a JSON file with some parameters. First within the "Parameters" array, the "Screen Type" parameter is for the type of screen the users will be using to interact with the CUI. 
-
-Changing the value to:
-
-    "phone" - is for most handheld devices e.g phones, tablets etc.
-    "monitor" - is for most larger screen types e.g laptops, pc monitors etc.
-
-
-Next is a set of parameters relating to the Avatar that will display to the user:
+The "input.json" file is a JSON file with some parameters. First within the "Parameters" array, the set of parameters relating to the Avatar that will display to the user:
 
     "Avatar Image": "/images/AvatarMaker.png",
     "Avatar Name": "Amy"
-
+    
     "Avatar Image" - is the location of the photo that shows the Avatar's face, for the best quality, the photo should be a 20x20 pixel photo.
 
 *** Make sure you save the photo named "AvatarMaker.png" in the "public/images/" directory for the photo to render properly ***

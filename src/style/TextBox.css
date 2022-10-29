@@ -1,11 +1,11 @@
 
 .textInput {
-    border-radius: 25px;
+    border-radius: 15px;
     padding: 5px 12px 5px 12px;
     width: 70%;
     max-width: 70%;
     min-width: 0;
-    border-style: solid;
+    border: 0;
     resize: none;
     overflow: scroll;
     max-height: 5rem;
@@ -13,12 +13,22 @@
     vertical-align: bottom;
     font-size: large;
     margin-left: 2px;
+    background-color: #E0E0E0;
+    color: black;
+    font-family: Verdana, sans-serif;
   }
-  
+
+::placeholder{
+  color: #696969;
+}
+
 .submitButton {
     border-radius: 25px;
     padding: 5px 2px 5px 2px;
     width: 5rem;
+    background-color: #2D68C4;
+    color: white;
+    border: 0;
     max-width: 7rem;
     font-size: large;
     box-sizing: border-box;
@@ -36,7 +46,7 @@ form {
   position: relative;
   display: flex;
   box-sizing: border-box;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 

@@ -1,16 +1,26 @@
 .buttonBox {
-    text-align: center;
-  }
-  
+  flex-wrap: wrap;
+  display: flex;
+}
+
+
 .buttons {
-    flex-wrap: wrap;
-    display: inline-block;
-    border-radius: 25px;
+    background-color: #2D68C4;
+    color: white;
+    border: 0;
+    margin: 2px;
     padding: 5px 12px 5px 12px;
     flex-direction: column;
     word-wrap: break-word;
     overflow: hidden;
     font-size: large;
-    max-width: 100%;
-  }
+    flex: auto;
+    border-radius: 50px;
+    height: 3rem;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    display: inline-flex;
+
+}
 
