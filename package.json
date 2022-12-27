@@ -13,6 +13,7 @@
     "react-dom": "^18.0.2",
     "react-responsive": "^9.0.0-beta.10",
     "react-scripts": "^5.0.1",
+    "react-test-renderer": "^18.2.0",
     "serve": "^14.0.1",
     "web-vitals": "^2.1.4"
   },
